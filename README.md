@@ -34,7 +34,7 @@
 | user             | references| null: false, foreign_key: true |
 
 ### Association
- - has_one :purchases
+ - has_one :purchase
  - belongs_to :user
 
 ## purchases　テーブル
