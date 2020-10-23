@@ -29,5 +29,4 @@ class Item < ApplicationRecord
     validates :area_id
     validates :delivery_date_id
   end
-
 end

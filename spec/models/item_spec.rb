@@ -52,7 +52,7 @@ RSpec.describe Item, type: :model do
         it 'delivery_date_idがなければ出品できない' do
           @item.delivery_date_id = nil
           @item.valid?
-          expect(@item.errors.full_messages).to include("Delivery date can't be blank", "Delivery date is not a number")
+          expect(@item.errors.full_messages).to include("Delivery date can't be blank", 'Delivery date is not a number')
         end
         it 'priceがなければ出品できない' do
           @item.price = nil
@@ -103,4 +103,3 @@ RSpec.describe Item, type: :model do
     end
   end
 end
-
