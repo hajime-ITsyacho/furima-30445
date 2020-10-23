@@ -12,12 +12,6 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :description
-    validates :category
-    validates :condition
-    validates :name
-    validates :charge
-    validates :area
-    validates :delivery_date
     validates :image
     validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }, format: { with: /\A[0-9]+\z/ }
   end
