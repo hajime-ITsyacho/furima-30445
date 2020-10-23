@@ -1,21 +1,12 @@
-function price(){
-    const priceInput = document.getElementById("item-price");
-    const add_tax = document.getElementById("add-tax-price");
-    const profit = document.getElementById("profit");
-      priceInput.addEventListener('keyup', () => {
-          const value = priceInput.value;
-          
-        if (value >= 300 && value <= 9999999){
-         let fee = value * 0.1
-          let gains = value - fee
-          add_tax.textContent = fee;
-          profit.textContent = gains;
-      } else {
-        let fee = '-';
-        let gains = '-';
-        add_tax.textContent = fee;
-        profit.textContent = gains;
-      }
-    });
+function price (){
+  const item_price  = document.getElementById("item-price");
+  item_price.addEventListener("keyup", () => {
+    const item_priceVal = Math.floor(item_price.value * 0.1);
+    const tax_num = document.getElementById("add-tax-price");
+    tax_num.innerHTML = `${item_priceVal}`;
+    const prof = item_price.value - item_priceVal;
+    const profit_num = document.getElementById("profit");
+    profit_num.innerHTML = `${prof}`;
+  });
 }
-window.addEventListener('load', price);
+window.addEventListener("keypress", price);
