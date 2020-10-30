@@ -6,6 +6,11 @@ class Pay
     validates :post_code
   end
 
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  validates :area_id, numericality: { other_than: 1 }
+
+
   with_options presence: true do
     validates :area_id
     validates :city
@@ -13,17 +18,12 @@ class Pay
     validates :building_name
   end
 
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :area
-  with_options numericality: { other_than: 1 } 
-    validates :area_id
-
   with_options presence: true, format: { with: /\A^\d{10}$|^\d{11}$\Z/ } do
     validates :phone_num
   end
 
   def save
     @purchase = Purchase.create(user_id: user_id, item_id: item_id)
-    Address.create(post_code: post_code, aree_id: area_id, city: city, house_num: house_num, building_name: building_name, phone_num: phone_num, purchase_id: @purchase.id)
+    Address.create(post_code: post_code, area_id: area_id, city: city, house_num: house_num, building_name: building_name, phone_num: phone_num, purchase_id: @purchase.id)
   end
 end
