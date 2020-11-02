@@ -71,6 +71,12 @@ RSpec.describe Purchase, type: :model do
         expect(@pay.errors.full_messages).to include('Phone num is invalid')
       end
 
+      it 'area_idが1だと購入できないこと' do
+        @pay.area_id = 1
+        @pay.valid?
+        expect(@pay.errors.full_messages).to include('Area must be other than 1')
+      end
+
     end
   end
 end
