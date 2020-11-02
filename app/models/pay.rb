@@ -1,6 +1,6 @@
 class Pay
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_code, :area_id, :city, :house_num, :building_name, :phone_num, :purchase_id
+  attr_accessor :user_id, :item_id, :post_code, :area_id, :city, :house_num, :building_name, :phone_num, :purchase_id, :token, :authenticity_token
 
   with_options presence: true, format: { with: /\A^\d{3}[-]\d{4}$\Z/ } do
     validates :post_code
@@ -15,7 +15,7 @@ class Pay
     validates :area_id
     validates :city
     validates :house_num
-    validates :building_name
+    validates :token
   end
 
   with_options presence: true, format: { with: /\A^\d{10}$|^\d{11}$\Z/ } do
