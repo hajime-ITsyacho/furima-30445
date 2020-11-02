@@ -6,10 +6,8 @@ class Pay
     validates :post_code
   end
 
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   validates :area_id, numericality: { other_than: 1 }
-
 
   with_options presence: true do
     validates :area_id

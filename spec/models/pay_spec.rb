@@ -7,21 +7,17 @@ RSpec.describe Purchase, type: :model do
 
   describe '商品の購入' do
     context '商品が購入できる場合' do
-
       it 'すべての値が正しく入力されていれば購入できること' do
         expect(@pay).to be_valid
       end
-
     end
 
     context '商品が購入できない場合' do
-
       it 'tokenが存在しない場合保存できないこと' do
         @pay.token = nil
         @pay.valid?
         expect(@pay.errors.full_messages).to include("Token can't be blank")
       end
-
 
       it 'post_codeが空だと購入できないこと' do
         @pay.post_code = nil
@@ -76,7 +72,6 @@ RSpec.describe Purchase, type: :model do
         @pay.valid?
         expect(@pay.errors.full_messages).to include('Area must be other than 1')
       end
-
     end
   end
 end
