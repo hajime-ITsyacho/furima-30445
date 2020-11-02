@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: :index
-  before_action :item_find, only: [:index, :create]
+  before_action :item_find, only: [:index, :create, :move_to_root_path]
+  before_action :move_to_root_path, only: [:index]
 
   def index
     @pay = Pay.new
@@ -36,5 +37,12 @@ class PurchasesController < ApplicationController
     )
   end
 
+  def move_to_root_path
+    if user_signed_in? && current_user.id == @item.user_id
+      redirect_to root_path
+    elsif @item.purchase.present?
+      redirect_to root_path
+    end
+  end
 
 end
